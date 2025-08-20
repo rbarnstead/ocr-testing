@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BrowserMultiFormatReader } from "@zxing/browser";
-import { NotFoundException } from "@zxing/library";
+import { BrowserMultiFormatReader, BrowserPDF417Reader } from "@zxing/browser";
+import { NotFoundException, ChecksumException } from "@zxing/library";
 
 export default function Scanner() {
   const videoRef = useRef(null);
   const [result, setResult] = useState("");
 
   useEffect(() => {
-    const codeReader = new BrowserMultiFormatReader();
+    const codeReader = new BrowserPDF417Reader();
     let controls; // store stop handle
 
     codeReader
@@ -18,6 +18,9 @@ export default function Scanner() {
           if (controls) controls.stop();
         }
         if (err && !(err instanceof NotFoundException)) {
+          console.error(err);
+        }
+        if (err && !(err instanceof ChecksumException)) {
           console.error(err);
         }
       })

@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Scanner from './scanner'
 import TestScanner from './test-scanner'
+import TestScanner2 from './test-scanner-2'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,7 +13,7 @@ function App() {
     <>
       <div>
         Hello
-        <TestScanner></TestScanner>
+        <TestScanner2></TestScanner2>
       </div>
     </>
   )
